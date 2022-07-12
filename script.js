@@ -67,11 +67,6 @@ const fetchItems = async (idProduct) => {
   ol.appendChild(newCart); 
   return response;
 };
-
-// const buttons = document.querySelectorAll('.item__add');
-// buttons.forEach((button) => buttonaddEventListener('click', (event) => {
-
-// }));
   
 const sectionItems = document.getElementsByClassName('items')[0];
 sectionItems.addEventListener('click', (event) => {

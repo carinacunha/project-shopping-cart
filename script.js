@@ -41,7 +41,10 @@ const final = async () => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const cartItemClickListener = (event) => {};
+const cartItemClickListener = (event) => {
+  const { target } = event;
+  target.parentNode.removeChild(target);
+};
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
   const li = document.createElement('li');
@@ -50,8 +53,6 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
-
-const sectionItems = document.getElementsByClassName('items')[0];
 
 const fetchItems = async (idProduct) => {
   const response = await fetchItem(idProduct);
@@ -67,6 +68,12 @@ const fetchItems = async (idProduct) => {
   return response;
 };
 
+// const buttons = document.querySelectorAll('.item__add');
+// buttons.forEach((button) => buttonaddEventListener('click', (event) => {
+
+// }));
+  
+const sectionItems = document.getElementsByClassName('items')[0];
 sectionItems.addEventListener('click', (event) => {
   const button = event.target;
   const skuButtonSection = button.parentNode;

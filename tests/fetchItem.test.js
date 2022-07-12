@@ -30,7 +30,7 @@ describe('2 - Teste a função fetchItem', () => {
 
   test('Testa ao chamar a função fetchItem sem argumento, retorna um erro com a mensagem: "You must provide an url"', async () => {
     expect.assertions(1);
-    const response = await fetchItem();
+    const response = await fetchItem('');
     await expect(Promise.reject(new Error('You must provide an url'))).rejects.toThrow('You must provide an url');
   })
 });

@@ -24,22 +24,6 @@ const createProductItemElement = ({ sku, name, image }) => {
   return section;
 };
 
-const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
-
-const cartItemClickListener = (event) => {
-  // coloque seu código aqui
-};
-
-const createCartItemElement = ({ sku, name, salePrice }) => {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
-  return li;
-};
-
-// Testing funcion
-
 const final = async () => {
   const response = await fetchProducts('computador');
   const { results } = response;
@@ -54,5 +38,40 @@ const final = async () => {
     firstSection.appendChild(createdSection);
   });
 };
+
+const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
+
+const cartItemClickListener = (event) => {};
+
+const createCartItemElement = ({ sku, name, salePrice }) => {
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  li.addEventListener('click', cartItemClickListener);
+  return li;
+};
+
+const sectionItems = document.getElementsByClassName('items')[0];
+
+const fetchItems = async (idProduct) => {
+  const response = await fetchItem(idProduct);
+  const { id, title, price } = response;
+  const item = {
+    sku: id,
+    name: title,
+    salePrice: price,
+  };
+  const newCart = createCartItemElement(item);
+  const ol = document.getElementsByClassName('cart__items')[0];
+  ol.appendChild(newCart); 
+  return response;
+};
+
+sectionItems.addEventListener('click', (event) => {
+  const button = event.target;
+  const skuButtonSection = button.parentNode;
+  const element = skuButtonSection.firstChild.textContent;
+  fetchItems(element);
+});
 
 window.onload = () => final();

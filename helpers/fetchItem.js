@@ -1,5 +1,5 @@
-const fetchItem = async () => {
-  const response = await fetch('https://api.mercadolibre.com/items/MLB1615760527');
+const fetchItem = async (idProduct) => {
+  const response = await fetch(`https://api.mercadolibre.com/items/${idProduct}`);
   const data = await response.json();
   return data;
 };

@@ -1,5 +1,3 @@
-//const saveCartItems = require("./helpers/saveCartItems");
-
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -41,7 +39,7 @@ const final = async () => {
   });
 };
 
-//const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
+const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
   const { target } = event;

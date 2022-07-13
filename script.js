@@ -15,7 +15,6 @@ const createCustomElement = (element, className, innerText) => {
 const createProductItemElement = ({ sku, name, image }) => {
   const section = document.createElement('section');
   section.className = 'item';
-  
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
@@ -89,13 +88,6 @@ const clearCart = () => {
 const buttonClear = document.querySelector('.empty-cart');
 buttonClear.addEventListener('click', clearCart);
 
-// const LoadMsg = async () => {
-//   const msg = document.createElement('section');
-//   msg.className = 'loading';
-//   msg.innerText = 'carregando';
-// };
-
 window.onload = () => {
-  // LoadMsg();
   final();
 };

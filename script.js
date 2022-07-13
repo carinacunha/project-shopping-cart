@@ -25,7 +25,12 @@ const createProductItemElement = ({ sku, name, image }) => {
 };
 
 const final = async () => {
+  const msg = document.createElement('section');
+  msg.className = 'loading';
+  msg.innerText = 'carregando';
+  document.querySelector('.container').appendChild(msg);
   const response = await fetchProducts('computador');
+  msg.innerText = '';
   const { results } = response;
   results.forEach((item) => {
     const selected = {
@@ -84,6 +89,13 @@ const clearCart = () => {
 const buttonClear = document.querySelector('.empty-cart');
 buttonClear.addEventListener('click', clearCart);
 
+// const LoadMsg = async () => {
+//   const msg = document.createElement('section');
+//   msg.className = 'loading';
+//   msg.innerText = 'carregando';
+// };
+
 window.onload = () => {
+  // LoadMsg();
   final();
 };

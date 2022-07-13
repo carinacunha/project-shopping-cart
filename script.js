@@ -38,7 +38,7 @@ const final = async () => {
       image: item.thumbnail,
     };
     const createdSection = createProductItemElement(selected);
-    const firstSection = document.getElementsByClassName('items')[0];
+    const firstSection = document.querySelector('.items');
     firstSection.appendChild(createdSection);
   });
 };
@@ -89,5 +89,6 @@ const buttonClear = document.querySelector('.empty-cart');
 buttonClear.addEventListener('click', clearCart);
 
 window.onload = () => {
+  storage();
   final();
 };

@@ -87,29 +87,6 @@ const clearCart = () => {
 const buttonClear = document.querySelector('.empty-cart');
 buttonClear.addEventListener('click', clearCart);
 
-//Preço total
-const itemsCart = document.querySelector('.cart');
-const totalPrice = document.createElement('h3');
-totalPrice.className = 'total-price';
-totalPrice.innerText = 'Total:';
-itemsCart.appendChild(totalPrice);
-
-// const getPrice = async (idProduct) => {
-//   const response = await fetchItem(idProduct);
-//   const { price } = response;
-  
-//   const totalPrice = ;
-// }
-
-const selectPrice = document.getElementsByClassName('items')[0];
-selectPrice.addEventListener('click', (event) => {
-  const button = event.target;
-  const PriceButtonSection = button.parentNode;
-  const price = PriceButtonSection.secondChild;
-  return price;
-});
-
-
 window.onload = () => {
   final();
 };

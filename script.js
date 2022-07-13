@@ -1,3 +1,5 @@
+//const saveCartItems = require("./helpers/saveCartItems");
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -39,7 +41,7 @@ const final = async () => {
   });
 };
 
-const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
+//const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
   const { target } = event;
@@ -63,9 +65,8 @@ const fetchItems = async (idProduct) => {
     salePrice: price,
   };
   const newCart = createCartItemElement(item);
-  const ol = document.getElementsByClassName('cart__items')[0];
-  ol.appendChild(newCart); 
-  return response;
+  const items = document.getElementsByClassName('cart__items')[0];
+  items.appendChild(newCart);
 };
   
 const sectionItems = document.getElementsByClassName('items')[0];
@@ -76,4 +77,15 @@ sectionItems.addEventListener('click', (event) => {
   fetchItems(element);
 });
 
-window.onload = () => final();
+const clearCart = () => {
+  const items = document.querySelector('.cart__items');
+  
+  items.innerText = ''; 
+};
+
+const buttonClear = document.querySelector('.empty-cart');
+buttonClear.addEventListener('click', clearCart);
+
+window.onload = () => {
+  final();
+};

@@ -19,7 +19,6 @@ const createProductItemElement = ({ sku, name, image }) => {
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
   return section;
 };
 
@@ -59,7 +58,7 @@ const getTotalPrice = () => {
     arr.push(price);
   });
   const total = arr.reduce((acc, value) => acc + value, 0);
-  totalPrice.innerText = `${total}`;
+  totalPrice.innerText = `Total: R$ ${total}`;
 };
 
 const cartItemClickListener = (event) => {

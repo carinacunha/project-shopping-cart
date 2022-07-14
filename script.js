@@ -58,7 +58,7 @@ const getTotalPrice = () => {
     const price = Number(item.textContent.split('$')[1]);
     arr.push(price);
   });
-  const total = arr.reduce((acc, value) => acc + value);
+  const total = arr.reduce((acc, value) => acc + value, 0);
   totalPrice.innerText = `${total}`;
 };
 

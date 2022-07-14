@@ -45,9 +45,27 @@ const final = async () => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
+const cart = document.querySelector('.cart');
+const totalPrice = document.createElement('h3');
+totalPrice.className = 'total-price';
+totalPrice.innerText = 'Total:';
+cart.appendChild(totalPrice);
+
+const getTotalPrice = () => {
+  const itemsCart = document.querySelector('.cart__items');
+  const arr = [];
+  [...itemsCart.children].forEach((item) => {
+    const price = Number(item.textContent.split('$')[1]);
+    arr.push(price);
+  });
+  const total = arr.reduce((acc, value) => acc + value);
+  totalPrice.innerText = `${total}`;
+};
+
 const cartItemClickListener = (event) => {
   const { target } = event;
   target.parentNode.removeChild(target);
+  getTotalPrice();
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -69,8 +87,9 @@ const fetchItems = async (idProduct) => {
   const newCart = createCartItemElement(item);
   const items = document.getElementsByClassName('cart__items')[0];
   items.appendChild(newCart);
+  getTotalPrice();
 };
-  
+
 const sectionItems = document.getElementsByClassName('items')[0];
 sectionItems.addEventListener('click', (event) => {
   const button = event.target;

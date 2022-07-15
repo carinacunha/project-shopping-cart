@@ -47,7 +47,6 @@ const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').inn
 const cart = document.querySelector('.cart');
 const totalPrice = document.createElement('h3');
 totalPrice.className = 'total-price';
-totalPrice.innerText = 'Total:';
 cart.appendChild(totalPrice);
 
 const getTotalPrice = () => {
@@ -100,6 +99,7 @@ sectionItems.addEventListener('click', (event) => {
 const clearCart = () => {
   const items = document.querySelector('.cart__items');
   items.innerText = ''; 
+  getTotalPrice();
 };
 
 const buttonClear = document.querySelector('.empty-cart');

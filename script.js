@@ -45,7 +45,7 @@ const final = async () => {
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cart = document.querySelector('.cart');
-const totalPrice = document.createElement('span');
+const totalPrice = document.createElement('h3');
 totalPrice.className = 'total-price';
 totalPrice.innerText = 'Total:';
 cart.appendChild(totalPrice);
@@ -57,9 +57,8 @@ const getTotalPrice = () => {
     const price = Number(item.textContent.split('$')[1]);
     arr.push(price);
   });
-  console.log(arr);
   const total = arr.reduce((acc, value) => acc + value, 0);
-  totalPrice.innerText = `Total: R$ ${total}`;
+  totalPrice.innerText = `${total}`;
 };
 
 const cartItemClickListener = (event) => {
@@ -101,7 +100,6 @@ sectionItems.addEventListener('click', (event) => {
 const clearCart = () => {
   const items = document.querySelector('.cart__items');
   items.innerText = ''; 
-  getTotalPrice();
 };
 
 const buttonClear = document.querySelector('.empty-cart');

@@ -126,6 +126,7 @@ const transferDatatoCart = () => {
       list.className = 'cart__item';
       itemsCart.appendChild(list);
       list.innerText = item;
+      list.addEventListener('click', cartItemClickListener);
     });
   }
 };

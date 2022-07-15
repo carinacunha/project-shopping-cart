@@ -60,6 +60,17 @@ const getTotalPrice = () => {
   totalPrice.innerText = `${total}`;
 };
 
+const trasformData = () => {
+  const itemsCart = document.querySelectorAll('li');
+  const arr = [];
+  itemsCart.forEach((item) => {
+    const text = item.textContent;
+    arr.push(text);
+  });
+  const toString = JSON.stringify(arr);
+  saveCartItems(toString);
+};
+
 const cartItemClickListener = (event) => {
   const { target } = event;
   target.parentNode.removeChild(target);
@@ -86,6 +97,7 @@ const fetchItems = async (idProduct) => {
   const items = document.getElementsByClassName('cart__items')[0];
   items.appendChild(newCart);
   getTotalPrice();
+  trasformData();
 };
 
 const sectionItems = document.getElementsByClassName('items')[0];
@@ -105,6 +117,20 @@ const clearCart = () => {
 const buttonClear = document.querySelector('.empty-cart');
 buttonClear.addEventListener('click', clearCart);
 
+const transferDatatoCart = () => {
+  if (getSavedCartItems('cartItems')) {
+    const fromStorage = JSON.parse(getSavedCartItems('cartItems'));
+    fromStorage.forEach((item) => {
+      const itemsCart = document.querySelector('ol');
+      const list = document.createElement('li');
+      list.className = 'cart__item';
+      itemsCart.appendChild(list);
+      list.innerText = item;
+    });
+  }
+};
+
 window.onload = () => {
   final();
+  transferDatatoCart();
 };
